@@ -23,8 +23,8 @@ public class NotesController {
     }
 
     @GetMapping
-    public List<Notes> getList() {
-        return notesService.getList();
+    public List<Notes> getList(@RequestParam String title) {
+        return notesService.getList(title);
     }
 
     @GetMapping("/{id}")

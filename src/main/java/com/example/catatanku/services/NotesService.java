@@ -27,8 +27,8 @@ public class NotesService {
         return notes;
     }
 
-    public List<Notes> getList() {
-        return notesRepository.findAll();
+    public List<Notes> getList(String title) {
+        return notesRepository.findByTitleContaining(title);
     }
 
     public Optional<Notes> get(int id) {
