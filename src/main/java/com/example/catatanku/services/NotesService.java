@@ -5,6 +5,8 @@ import com.example.catatanku.repository.NotesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NotesService {
 
@@ -22,5 +24,9 @@ public class NotesService {
         notesRepository.save(notes);
 
         return notes;
+    }
+
+    public List<Notes> getList() {
+        return notesRepository.findAll();
     }
 }
