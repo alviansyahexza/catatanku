@@ -1,5 +1,6 @@
 package com.example.catatanku.services;
 
+import com.example.catatanku.body.PatchNotesBody;
 import com.example.catatanku.body.PostNotesBody;
 import com.example.catatanku.models.Notes;
 import com.example.catatanku.repository.NotesRepository;
@@ -9,6 +10,7 @@ import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -41,6 +43,12 @@ public class NotesService {
         notesRepository.save(notes);
 
         return notes;
+    }
+
+    @Transactional
+    public int updateContent(PatchNotesBody body, int id) {
+        validator.validate(body);
+        return notesRepository.updateContent(body.getContent(), id);
     }
 
     public List<Notes> getList(String title) {

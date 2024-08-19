@@ -1,9 +1,9 @@
 package com.example.catatanku.controllers;
 
+import com.example.catatanku.body.PatchNotesBody;
 import com.example.catatanku.body.PostNotesBody;
 import com.example.catatanku.models.Notes;
 import com.example.catatanku.services.NotesService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +30,10 @@ public class NotesController {
     @GetMapping("/{id}")
     public Optional<Notes> get(@PathVariable("id") int noteId) {
         return notesService.get(noteId);
+    }
+
+    @PatchMapping("/{id}")
+    public int update(@RequestBody PatchNotesBody body, @PathVariable("id") int noteId) {
+        return notesService.updateContent(body, noteId);
     }
 }
