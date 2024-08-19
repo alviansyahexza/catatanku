@@ -19,7 +19,7 @@ public class NotesController {
 
     @PostMapping
     public Notes add(@RequestBody PostNotesBody postNotesBody) {
-        return notesService.add(postNotesBody.getTitle(), postNotesBody.getContent());
+        return notesService.add(postNotesBody);
     }
 
     @GetMapping
