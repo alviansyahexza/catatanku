@@ -58,4 +58,6 @@ public class NotesService {
     public Optional<Notes> get(int id) {
         return notesRepository.findById(id);
     }
+
+    public void deleteById(int id) { notesRepository.deleteById(id); }
 }

@@ -36,4 +36,9 @@ public class NotesController {
     public int update(@RequestBody PatchNotesBody body, @PathVariable("id") int noteId) {
         return notesService.updateContent(body, noteId);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") int noteId) {
+        notesService.deleteById(noteId);
+    }
 }
