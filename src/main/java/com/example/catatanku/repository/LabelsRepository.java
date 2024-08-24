@@ -12,4 +12,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LabelsRepository extends JpaRepository<Labels, Integer> {}
+public interface LabelsRepository extends JpaRepository<Labels, Integer> {
+
+    @Modifying
+    @Query("UPDATE Labels l SET l.name = :name WHERE l.id = :id")
+    int updateName(@Param("name") String newName, @Param("id") Integer id);
+
+    List<Labels> findByNameContaining(String name);
+}
