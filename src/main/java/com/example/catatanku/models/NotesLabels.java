@@ -1,9 +1,7 @@
 package com.example.catatanku.models;
 
 import com.example.catatanku.models.id.NotesLabelsId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -22,4 +20,10 @@ public class NotesLabels {
 
     @CreationTimestamp
     LocalDateTime createdAt;
+
+    @OneToOne @JoinColumn(name = "labelsId", referencedColumnName = "id")
+    Labels labels;
+
+    @OneToOne @JoinColumn(name = "notesId ", referencedColumnName = "id")
+    Notes notes;
 }
