@@ -7,6 +7,9 @@ import com.example.catatanku.repository.NotesLabelsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class NotesLabelsService {
 
@@ -29,5 +32,12 @@ public class NotesLabelsService {
         notesLabelsId.setNotesId(notesId);
         notesLabelsId.setLabelsId(labelsId);
         notesLabelsRepository.deleteById(notesLabelsId);
+    }
+
+    public List<NotesLabels> list(String notesId, String labelsId) {
+        if (!notesId.isEmpty() && !labelsId.isEmpty()) return notesLabelsRepository.findByNotesIdAndLabelsId(Integer.parseInt(notesId), Integer.parseInt(labelsId));
+        if (!notesId.isEmpty()) return notesLabelsRepository.findByNotesId(Integer.parseInt(notesId));
+        if (!labelsId.isEmpty()) return notesLabelsRepository.findByLabelsId(Integer.parseInt(labelsId));
+        return notesLabelsRepository.findAll();
     }
 }
